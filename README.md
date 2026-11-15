@@ -29,3 +29,49 @@ Each transaction includes the following fields:
 
 The dataset includes examples of high-dollar transactions, country mismatches, and multiple transactions occurring within a short time period. These examples will be used to test the fraud monitoring rules developed later in the project.
 
+
+## Python Transaction Monitoring
+
+This project includes a Python script that reads and analyzes a synthetic transaction dataset.
+
+The script is located at `src/load_transactions.py`.
+
+### Current Features
+
+- Reads transaction data from a CSV file using Python's built-in `csv` module.
+- Processes transactions using `csv.DictReader`.
+- Converts transaction amounts from text into numeric values.
+- Displays transaction IDs, customer IDs, and transaction amounts.
+- Identifies transactions of $1,000 or more.
+- Counts the total number of transactions processed.
+- Counts the number of high-amount alerts generated.
+
+### Running the Script
+
+From the project's root directory, run:
+
+```bash
+python3 src/load_transactions.py
+```
+
+### Example Results
+
+The current synthetic dataset contains 10 transactions.
+
+```text
+Total transactions: 10
+High amount alerts: 2
+```
+
+The following transactions trigger the high-amount monitoring rule:
+
+| Transaction ID | Amount | Alert |
+|---|---:|---|
+| T1003 | $1,450.00 | HIGH AMOUNT ALERT |
+| T1008 | $2,300.00 | HIGH AMOUNT ALERT |
+
+### Monitoring Disclaimer
+
+All transaction data in this project is synthetic and used for educational purposes.
+
+A monitoring alert does not confirm fraudulent activity. Alerts identify transactions that may require additional investigation.
