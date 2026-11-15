@@ -75,3 +75,43 @@ The following transactions trigger the high-amount monitoring rule:
 All transaction data in this project is synthetic and used for educational purposes.
 
 A monitoring alert does not confirm fraudulent activity. Alerts identify transactions that may require additional investigation.
+
+
+
+## Fraud Detection Rules
+
+The Fraud & Risk Operations Lab uses Python-based rules to identify potentially suspicious transaction activity.
+
+### 1. High Amount
+
+- **Rule:** Flag transactions of $1,000 or more.
+- **Function:** `is_high_amount()`
+- **Purpose:** Identify unusually large transactions for further review.
+
+### 2. Country Mismatch
+
+- **Rule:** Flag transactions where the transaction country differs from the customer's home country.
+- **Function:** `is_country_mismatch()`
+- **Purpose:** Identify transactions that may require geographic risk review.
+
+### 3. High Velocity
+
+- **Rule:** Detect three or more transactions by the same customer within a 10-minute window.
+- **Function:** `is_high_velocity()`
+- **Purpose:** Identify rapid transaction activity that may warrant investigation.
+- **Current limitation:** Transactions are expected to be in chronological order.
+
+## Day 4 Detection Results
+
+The rules were tested against a synthetic dataset containing 10 transactions.
+
+| Detection | Result |
+|---|---|
+| Total transactions processed | 10 |
+| High amount alerts | 2 |
+| Country mismatch alerts | 2 |
+| High velocity detected | True |
+
+The high-velocity rule was also tested against normal activity and transactions spaced outside the 10-minute window.
+
+**Note:** Detection results indicate potential risk signals, not confirmed fraud. The current velocity function returns a Boolean result rather than a count of individual alerts.
